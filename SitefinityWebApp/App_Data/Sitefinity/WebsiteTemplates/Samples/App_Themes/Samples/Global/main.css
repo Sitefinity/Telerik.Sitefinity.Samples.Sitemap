@@ -1,0 +1,152 @@
+﻿body {
+	background-color: #252525;
+	font-size: 12px;
+	font-family: Arial;
+	color: #444;
+	line-height: 20px;
+}
+
+#wrapper {
+	position:relative;
+	float:left;
+	width: 960px;
+	margin-left: -480px;
+	left: 50%;
+}
+
+#header {
+	position:relative;
+	float:left;
+	width: 100%;
+	margin-bottom: 30px;
+}
+	
+#logo {
+	position:relative;
+	float:left;
+	width:150px;
+	height: 38px;
+	background-image: url(../Images/logo.jpg);
+}
+
+a#logo:hover {
+	background-position: 0 -38px;
+}
+
+#credentials {
+	position:relative;
+	float: right;
+	width: 50%;
+	text-align:right;
+	line-height: 16px;
+	font-size: 11px;
+	color: white;
+}
+
+#credentials span {	
+	color: #797979;
+}
+
+#credentials a {
+	color: #00a8e3;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#credentials a:hover {
+	color: #78dbff;
+}
+
+#content {
+	
+	background-color: white;
+	position:relative;
+	float:left;
+	width: 900px;
+	padding: 30px;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-top: 5px solid #33b9e9;
+
+}
+
+
+#credentials {
+color: #ccc;
+}
+
+#credentials span {
+color: #777;
+}
+
+h1, h2 {
+	font-weight: normal;
+	letter-spacing: -1px;
+	color: #06759d;
+	padding-bottom: 5px;
+}
+
+#footer {
+	position:relative;
+	float:left;
+	width: 100%;
+	height: 70px;
+}
+
+.submit
+{
+	list-style-type: none;
+	margin-bottom: 10px;
+}
+
+.submit label
+{
+	display: block;
+	clear: both;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.sfreContentArea { background: #fff !important; }
+
+#footer { text-align: right; padding: 5px 0px;  }
+#footer a { color: #fff; text-decoration: none;  font-size: .95em; padding: 0px 5px; }
+
+.sfnewsListItem, 
+.sfpostListItem,
+.sfeventListItem
+{
+    padding:0px;
+    margin:0px;
+    list-style:none;
+}
+
+.sfpostsListItem h2 a,
+.sfnewsListItem  h2 a,
+.sfeventListItem h2 a 
+{
+    color: #06759D;
+    margin:0px;
+    text-decoration: none;
+    padding:0px;
+}
+
+#content a 
+{
+    color: #06759D;
+    text-decoration:none;
+}
+
+#content a:hover 
+{
+    color: #777;
+}
+
+ul.sfeventsList,
+ul.sfnewsList,
+ul.sfpostsList 
+{
+    margin: 0;
+    padding: 0
+}
