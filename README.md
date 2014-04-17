@@ -41,7 +41,7 @@ The project refers to the following NuGet packages:
 
 * Telerik.Sitefinity.All.nupkg
 
-* DDay.iCal.nupkg
+* DDay.iCal.nupkg – from nugget official package store
 
 
 **Telerik.Sitefinity.Samples.Common** library
