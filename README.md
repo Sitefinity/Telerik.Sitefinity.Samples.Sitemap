@@ -12,7 +12,7 @@ Using the Sitemap sample, you can:
 
 ### Requirements
 
-* Sitefinity license
+* Sitefinity license 
 
 * .NET Framework 4
 
