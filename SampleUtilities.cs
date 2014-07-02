@@ -52,6 +52,8 @@ using Telerik.Sitefinity.Security.Claims;
 using Telerik.Sitefinity.Security.Configuration;
 using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Services.Comments;
+using Telerik.Sitefinity.Services.Comments.Proxies;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
@@ -59,8 +61,6 @@ using Telerik.Sitefinity.Web.Configuration;
 using Telerik.Sitefinity.Web.Model;
 using Telerik.Sitefinity.Web.UI;
 using Telerik.Sitefinity.Web.UI.ContentUI.Config;
-using Telerik.Sitefinity.Services.Comments;
-using Telerik.Sitefinity.Services.Comments.Proxies;
 
 namespace Telerik.Sitefinity.Samples.Common
 {
@@ -158,7 +158,6 @@ namespace Telerik.Sitefinity.Samples.Common
 
                         if (control != null)
                         {
-
                             if (string.IsNullOrEmpty(control.ID))
                             {
                                 control.ID = GenerateUniqueControlIdForPage(master, null);
@@ -265,7 +264,6 @@ namespace Telerik.Sitefinity.Samples.Common
 
                     if (control != null)
                     {
-
                         if (string.IsNullOrEmpty(control.ID))
                         {
                             control.ID = GenerateUniqueControlIdForPage(master, culture);
@@ -289,6 +287,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     }
                 }
             }
+
             Thread.CurrentThread.CurrentUICulture = currentCulture;
         }
 
@@ -347,7 +346,6 @@ namespace Telerik.Sitefinity.Samples.Common
 
                         if (control != null)
                         {
-
                             if (string.IsNullOrEmpty(control.ID))
                             {
                                 control.ID = GenerateUniqueControlIdForTemplate(temp);
@@ -620,10 +618,12 @@ namespace Telerik.Sitefinity.Samples.Common
                             })
                             .SaveChanges();
                         }
+
                         result = true;
                     }
                 }
             }
+
             return result;
         }
 
@@ -676,6 +676,7 @@ namespace Telerik.Sitefinity.Samples.Common
                                         b.UrlName[cultureInfo] = Regex.Replace(title.ToLower(), UrlNameCharsToReplace, UrlNameReplaceString);
                                     }).SaveChanges();
                                 }
+
                                 result = true;
                             }
 
@@ -684,6 +685,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     }
                 }
             }
+
             return result;
         }
 
@@ -819,6 +821,7 @@ namespace Telerik.Sitefinity.Samples.Common
                 var comment = cs.CreateComment(commentProxy);
                 return comment;
             }
+
             return null;
         }
 
@@ -1064,6 +1067,7 @@ namespace Telerik.Sitefinity.Samples.Common
                                     }
                                 }
                             }
+
                             eventItem.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
                         }).CheckIn().Publish().SaveChanges();
                     }
@@ -1200,6 +1204,7 @@ namespace Telerik.Sitefinity.Samples.Common
                                 l.UrlName[cultureInfo] = Regex.Replace(title.ToLower(), UrlNameCharsToReplace, UrlNameReplaceString);
                             }).SaveChanges();
                         }
+
                         result = true;
                     }
                     else
@@ -1279,6 +1284,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     {
                         itemId = listItemId;
                     }
+
                     var listItemFacadeId = fluent.ListItem(itemId);
                     using (new ElevatedModeRegion(listItemFacadeId.GetManager()))
                     {
@@ -1441,6 +1447,7 @@ namespace Telerik.Sitefinity.Samples.Common
                                     }
                                 }
                             }
+
                             item.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
                         }).CheckIn().Publish().SaveChanges();
                     }
@@ -1472,6 +1479,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     var comment = cs.CreateComment(commentProxy);
                     return comment;
                 }
+
                 return null;
             }
         }
@@ -1536,6 +1544,7 @@ namespace Telerik.Sitefinity.Samples.Common
                             p.Title = pageName;
                             pageData.Description = pageName;
                             pageData.Culture = Thread.CurrentThread.CurrentCulture.ToString();
+
                             //pageData.UiCulture = Thread.CurrentThread.CurrentUICulture.ToString();
                             p.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
                         }).CheckOut().Publish().SaveChanges();
@@ -1614,7 +1623,6 @@ namespace Telerik.Sitefinity.Samples.Common
                 pageNode.ShowInNavigation = true;
                 pageNode.DateCreated = DateTime.UtcNow;
                 pageNode.LastModified = DateTime.UtcNow;
-
             }
             else
             {
@@ -1832,6 +1840,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     {
                         throw new InvalidOperationException("User cannot be created" + status.ToString());
                     }
+
                     userId = user.Id;
                     userManager.SaveChanges();
                     userManager.Provider.SuppressSecurityChecks = false;
@@ -1853,6 +1862,7 @@ namespace Telerik.Sitefinity.Samples.Common
                                 roleManager.CreateRole(info.Id, info.Name);
                             }
                         }
+
                         roleManager.SaveChanges();
 
                         var adminRole = roleManager.GetRole("Administrators");
@@ -1862,6 +1872,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     }
                 }
             }
+
             return userId;
         }
 
@@ -1917,6 +1928,7 @@ namespace Telerik.Sitefinity.Samples.Common
                 userManager.SaveChanges();
                 userManager.Provider.SuppressSecurityChecks = false;
             }
+
             return userId;
         }
 
@@ -1954,6 +1966,7 @@ namespace Telerik.Sitefinity.Samples.Common
 
                         profileManager.SaveChanges();
                     }
+
                     userManager.SaveChanges();
                     userManager.Provider.SuppressSecurityChecks = false;
                 }
@@ -2051,6 +2064,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     templateKey = template.Id.ToString();
                 }
             }
+
             return templateKey;
         }
 
@@ -2073,6 +2087,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     }
                 }
             }
+
             return imageUrl;
         }
 
@@ -2089,6 +2104,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     imageId = image.Id;
                 }
             }
+
             return imageId;
         }
 
@@ -2110,6 +2126,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     imageId = image.Id;
                 }
             }
+
             Thread.CurrentThread.CurrentUICulture = currentCulture;
 
             return imageId;
@@ -2133,6 +2150,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     imageId = image.Id;
                 }
             }
+
             Thread.CurrentThread.CurrentUICulture = currentCulture;
 
             return imageId;
@@ -2156,6 +2174,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     imageUrl = image.Url;
                 }
             }
+
             Thread.CurrentThread.CurrentUICulture = currentCulture;
 
             return imageUrl;
@@ -2171,8 +2190,8 @@ namespace Telerik.Sitefinity.Samples.Common
             var pageManager = PageManager.GetManager();
             using (new ElevatedModeRegion(pageManager))
             {
-                if (pageManager.GetPresentationItems<ControlPresentation>().
-                    Where(t => t.EmbeddedTemplateName == embeddedResourcePath && t.ResourceAssemblyName == resourceAssemblyName &&
+                if (pageManager.GetPresentationItems<ControlPresentation>()
+                    .Where(t => t.EmbeddedTemplateName == embeddedResourcePath && t.ResourceAssemblyName == resourceAssemblyName &&
                                t.DataType == dataType && t.Name == name && t.ControlType == controlType.FullName && t.Condition == condition).FirstOrDefault() != null)
                     return;
 
@@ -2312,6 +2331,7 @@ namespace Telerik.Sitefinity.Samples.Common
 
                     pageTemplate.Name = name;
                     pageTemplate.Title = title;
+
                     //pageTemplate.MasterPage = masterPage;
                     //pageTemplate.Themes = theme;
                     pageTemplate.Category = SiteInitializer.CustomTemplatesCategoryId;
@@ -2355,6 +2375,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     var master = pageManager.EditTemplate(pageTemplate.Id, culture);
                     var temp = pageManager.TemplatesLifecycle.CheckOut(master, culture);
                     master = pageManager.TemplatesLifecycle.CheckIn(temp, culture);
+
                     // set the theme for the particular language version of the template
                     master.Themes.SetString(culture, theme);
                     master.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
@@ -2381,6 +2402,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     }
                 }
             }
+
             return result;
         }
 
@@ -2704,6 +2726,7 @@ namespace Telerik.Sitefinity.Samples.Common
                                 }
                             }
                         }
+
                         i.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
                     });
 
@@ -2841,6 +2864,7 @@ namespace Telerik.Sitefinity.Samples.Common
             {
                 albumsFacade.Where(a => a.Title == albumName).Count(out count);
             }
+
             if (count == 0)
             {
                 var albumId = Guid.NewGuid();
@@ -2855,6 +2879,7 @@ namespace Telerik.Sitefinity.Samples.Common
                         a.UrlName = Regex.Replace(albumName.ToLower(), UrlNameCharsToReplace, UrlNameReplaceString);
                     }).SaveChanges();
                 }
+
                 foreach (var file in myFolder.GetFiles())
                 {
                     var imageId = Guid.Empty;
@@ -2881,6 +2906,7 @@ namespace Telerik.Sitefinity.Samples.Common
             {
                 documentLibrariesFacade.Where(l => l.Id == libraryId).Count(out count);
             }
+
             if (count == 0)
             {
                 DirectoryInfo myFolder = new DirectoryInfo(folderPath);
@@ -3087,6 +3113,7 @@ namespace Telerik.Sitefinity.Samples.Common
             {
                 videoLibsFacade.Where(l => l.Id == libraryId).Count(out count);
             }
+
             var thumbnailKeys = thumbnails != null ? thumbnails.Keys : null;
             if (count == 0)
             {
@@ -3207,6 +3234,7 @@ namespace Telerik.Sitefinity.Samples.Common
                 librariesManager.UpdateThumbnail(videoId, imgData);
                 librariesManager.SaveChanges();
             }
+
             using (var fluent = App.WorkWith())
             {
                 var videoFacade = fluent.Video(videoId);
@@ -3247,6 +3275,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     videoId = video.Id;
                 }
             }
+
             Thread.CurrentThread.CurrentUICulture = currentCulture;
 
             return videoId;
@@ -3525,6 +3554,7 @@ namespace Telerik.Sitefinity.Samples.Common
             {
                 pipeSettings.LanguageIds.Add(AppSettings.CurrentSettings.DefaultFrontendLanguage.Name);
             }
+
             pipeSettings.IsInbound = isInbound;
             pipeSettings.IsActive = isActive;
             pipeSettings.PipeName = pipeName;
@@ -3582,6 +3612,7 @@ namespace Telerik.Sitefinity.Samples.Common
                     IsMetaField = true
                 });
             }
+
             PropertyDescriptorCollection baseProps = TypeDescriptor.GetProperties(baseType);
             foreach (PropertyDescriptor prop in baseProps)
             {
@@ -3745,7 +3776,7 @@ namespace Telerik.Sitefinity.Samples.Common
             if (groupKey == null)
             {
                 var groupProxy = new GroupProxy("test name", "TestGroupDescription", author);
-                var group = cs.CreateGroup(groupProxy);
+                var group = this.cs.CreateGroup(groupProxy);
                 groupKey = group.Key;
                 this.deleteGroup = true;
             }
@@ -3755,11 +3786,11 @@ namespace Telerik.Sitefinity.Samples.Common
             if (!key.IsNullOrEmpty())
                 threadProxy.Key = key;
 
-            var thread = cs.GetThreads(new ThreadFilter()).FirstOrDefault();
+            var thread = this.cs.GetThreads(new ThreadFilter()).FirstOrDefault();
 
             if (thread == null)
             {
-                this.Thread = cs.CreateThread(threadProxy);
+                this.Thread = this.cs.CreateThread(threadProxy);
             }
             else
                 this.Thread = thread;
@@ -3767,13 +3798,13 @@ namespace Telerik.Sitefinity.Samples.Common
 
         public void Dispose()
         {
-            if (deleteGroup)
+            if (this.deleteGroup)
             {
-                cs.DeleteGroup(this.Thread.GroupKey);
+                this.cs.DeleteGroup(this.Thread.GroupKey);
             }
             else
             {
-                cs.DeleteThread(this.Thread.Key);
+                this.cs.DeleteThread(this.Thread.Key);
             }
         }
 
