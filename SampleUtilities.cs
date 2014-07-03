@@ -718,6 +718,39 @@ namespace Telerik.Sitefinity.Samples.Common
             }
         }
 
+        public static void CreateBlogPost(Guid blogId, Guid blogPostId, string title, string content, string author, string summary)
+        {
+            var blogsManager = BlogsManager.GetManager();
+            using (new ElevatedModeRegion(blogsManager))
+            {
+                var blog = blogsManager.GetBlogs().Where(b => b.Id == blogId).SingleOrDefault();
+                if (blog != null)
+                {
+                    var blogPost = blogsManager.GetBlogPosts().FirstOrDefault(bp => bp.Id == blogPostId);
+                    if (blogPost == null)
+                    {
+                        var post = blogsManager.CreateBlogPost(blogPostId);
+                        post.Parent = blog;
+                        post.Summary = summary;
+                        post.Title = title;
+                        post.Content = content;
+                        post.DateCreated = DateTime.Today;
+                        post.PublicationDate = DateTime.UtcNow;
+                        post.ExpirationDate = DateTime.Today.AddDays(365);
+                        post.UrlName = Regex.Replace(post.Title.ToLower(), UrlNameCharsToReplace, UrlNameReplaceString);
+                        post.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
+                        blogsManager.RecompileItemUrls<BlogPost>(post);
+                        blogsManager.SaveChanges();
+
+                        var master = blogsManager.Lifecycle.CheckOut(post);
+                        master = blogsManager.Lifecycle.CheckIn(master);
+                        blogsManager.Lifecycle.Publish(master);
+                        blogsManager.SaveChanges();
+                    }
+                }
+            }
+        }
+
         public static void CreateLocalizedBlogPost(Guid blogPostId, Guid parentBlogId, string title, string content, string summary, Guid ownerId, List<string> tags, List<string> categories, string culture)
         {
             var cultureInfo = new CultureInfo(culture);
@@ -3714,7 +3747,7 @@ namespace Telerik.Sitefinity.Samples.Common
             var mgr = ForumsManager.GetManager();
             using (new ElevatedModeRegion(mgr))
             {
-                var thread = mgr.GetThread(threadId);
+                var thread = mgr.GetThreads().FirstOrDefault(t => t.Id == threadId);
 
                 if (thread == null)
                 {
