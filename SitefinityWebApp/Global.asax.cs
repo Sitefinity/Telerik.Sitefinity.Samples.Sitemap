@@ -4,9 +4,11 @@ using System.Collections.Specialized;
 using System.Linq;
 using SitefinityWebApp.Modules.SiteMap;
 using Telerik.Sitefinity;
+using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Abstractions.VirtualPath;
 using Telerik.Sitefinity.Abstractions.VirtualPath.Configuration;
 using Telerik.Sitefinity.Configuration;
+using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Modules.Blogs.Web.UI;
 using Telerik.Sitefinity.Modules.Blogs.Web.UI.Public;
 using Telerik.Sitefinity.Modules.Events;
@@ -50,9 +52,15 @@ namespace SitefinityWebApp
 
 		protected void Application_Start(object sender, EventArgs e)
 		{
-			Telerik.Sitefinity.Abstractions.Bootstrapper.Initializing += new EventHandler<Telerik.Sitefinity.Data.ExecutingEventArgs>(Bootstrapper_Initializing);
-			Telerik.Sitefinity.Abstractions.Bootstrapper.Initialized += new EventHandler<Telerik.Sitefinity.Data.ExecutedEventArgs>(Bootstrapper_Initialized);
+			Bootstrapper.Initializing += new EventHandler<ExecutingEventArgs>(Bootstrapper_Initializing);
+            SystemManager.ApplicationStart += this.SystemManager_ApplicationStart;
 		}
+
+        protected void SystemManager_ApplicationStart(object sender, EventArgs e)
+        {
+            SystemManager.RunWithElevatedPrivilegeDelegate worker = new SystemManager.RunWithElevatedPrivilegeDelegate(CreateSampleWorker);
+            SystemManager.RunWithElevatedPrivilege(worker);
+        }
 
 		protected void Bootstrapper_Initializing(object sender, Telerik.Sitefinity.Data.ExecutingEventArgs args)
 		{
@@ -61,15 +69,6 @@ namespace SitefinityWebApp
 				SampleUtilities.RegisterModule<SiteMapModule>("SiteMap", "This sample presents showcases how to create a sitemap module which generates a search engine friendly sitemap.xml for your site.");
 			}
 		}
-
-        protected void Bootstrapper_Initialized(object sender, Telerik.Sitefinity.Data.ExecutedEventArgs args)
-        {
-            if (args.CommandName == "Bootstrapped")
-            {
-                SystemManager.RunWithElevatedPrivilegeDelegate worker = new SystemManager.RunWithElevatedPrivilegeDelegate(CreateSampleWorker);
-                SystemManager.RunWithElevatedPrivilege(worker);
-            }
-        }
 
         private void CreateSampleWorker(object[] args)
         {            
@@ -152,15 +151,12 @@ namespace SitefinityWebApp
 
 		private void CreateBlogPosts()
 		{
-			#region Blog A
-
 			SampleUtilities.CreateBlog(new Guid(SampleBlogAId), "Sample Blog A", "Sample Blog A");
 
 			var postsCreated = App.WorkWith().Blog(new Guid(SampleBlogAId)).BlogPosts().Get().Count() > 0;
 
 			if (!postsCreated)
 			{
-
 				var title = "Blog A Sample Post A";
 				var content = @"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non lectus at sem consequat suscipit. Etiam nunc sem, condimentum a feugiat sit amet, consectetur sed justo. Nullam purus erat, tincidunt sed commodo ac, mollis vel neque. Vestibulum volutpat nulla in enim aliquet vitae ornare nunc gravida. </p>
 <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam ipsum nisl, tempor at tincidunt quis, congue vel purus. Duis sodales, est quis mollis posuere, mi mauris mollis sapien, ut rhoncus leo justo sed dolor. Etiam blandit tincidunt velit ac pellentesque. Cras nec leo lacus. Maecenas vel ipsum vitae dolor ultrices tempus. </p>
@@ -176,17 +172,12 @@ namespace SitefinityWebApp
 				SampleUtilities.CreateBlogPost(new Guid(SampleBlogAId), title, content, author, string.Empty);
 			}
 
-			#endregion
-
-			#region Blog B
-
 			SampleUtilities.CreateBlog(new Guid(SampleBlogBId), "Sample Blog B", "Sample Blog B");
 
 			postsCreated = App.WorkWith().Blog(new Guid(SampleBlogBId)).BlogPosts().Get().Count() > 0;
 
 			if (!postsCreated)
 			{
-
 				var title = "Blog B Sample Post A";
 				var content = @"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non lectus at sem consequat suscipit. Etiam nunc sem, condimentum a feugiat sit amet, consectetur sed justo. Nullam purus erat, tincidunt sed commodo ac, mollis vel neque. Vestibulum volutpat nulla in enim aliquet vitae ornare nunc gravida. </p>
 <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam ipsum nisl, tempor at tincidunt quis, congue vel purus. Duis sodales, est quis mollis posuere, mi mauris mollis sapien, ut rhoncus leo justo sed dolor. Etiam blandit tincidunt velit ac pellentesque. Cras nec leo lacus. Maecenas vel ipsum vitae dolor ultrices tempus. </p>
@@ -205,21 +196,19 @@ namespace SitefinityWebApp
 
 				SampleUtilities.CreateBlogPost(new Guid(SampleBlogBId), title, content, author, string.Empty);
 			}
-
-			#endregion
 		}
 
-		private void CreateEvents(string ProviderName)
+		private void CreateEvents(string providerName)
 		{
-			if (string.IsNullOrEmpty(ProviderName)) ProviderName = EventsManager.GetDefaultProviderName();
+			if (string.IsNullOrEmpty(providerName)) providerName = EventsManager.GetDefaultProviderName();
 
-			var eventsCreated = App.Prepare().SetContentProvider(ProviderName).WorkWith().Events().Get().Count() > 0;
+			var eventsCreated = App.Prepare().SetContentProvider(providerName).WorkWith().Events().Get().Count() > 0;
 			var year = DateTime.Now.Year;
 			var rand = new Random(DateTime.Now.Millisecond);
 
 			if (!eventsCreated)
 			{
-				var title = ProviderName + " Sample Event A";
+				var title = providerName + " Sample Event A";
 				var content = FILLER_TEXT;
 				var month = rand.Next(1, 12);
 				var startDate = new DateTime(year, month, 01, 18, 0, 0);
@@ -232,63 +221,63 @@ namespace SitefinityWebApp
 				var contactName = "John Doe";
 				var contactWeb = "http://www.sitefinity.com";
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 
-				title = ProviderName + " Sample Event B";
+				title = providerName + " Sample Event B";
 				content = FILLER_TEXT;
 				month = rand.Next(1, 12);
 				startDate = new DateTime(year, month, 12, 3, 0, 0);
 				endDate = new DateTime(year, month, 12, 7, 0, 0);
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 
-				title = ProviderName + " Sample Event C";
+				title = providerName + " Sample Event C";
 				content = FILLER_TEXT;
 				month = rand.Next(1, 12);
 				startDate = new DateTime(year, month, 4, 21, 0, 0);
 				endDate = new DateTime(year, month, 4, 23, 0, 0);
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 
-				title = ProviderName + " Sample Event D";
+				title = providerName + " Sample Event D";
 				content = FILLER_TEXT;
 				month = rand.Next(1, 12);
 				startDate = new DateTime(year, month, 1, 5, 0, 0);
 				endDate = new DateTime(year, month, 1, 10, 0, 0);
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 
-				title = ProviderName + " Sample Event E";
+				title = providerName + " Sample Event E";
 				content = FILLER_TEXT;
 				month = rand.Next(1, 12);
 				startDate = new DateTime(year, month, 1, 5, 0, 0);
 				endDate = new DateTime(year, month, 1, 10, 0, 0);
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 
-				title = ProviderName + " Sample Event F";
+				title = providerName + " Sample Event F";
 				content = FILLER_TEXT;
 				month = rand.Next(1, 12);
 				startDate = new DateTime(year, month, 1, 5, 0, 0);
 				endDate = new DateTime(year, month, 1, 10, 0, 0);
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 
-				title = ProviderName + " Sample Event G";
+				title = providerName + " Sample Event G";
 				content = FILLER_TEXT;
 				month = rand.Next(1, 12);
 				startDate = new DateTime(year, month, 1, 5, 0, 0);
 				endDate = new DateTime(year, month, 1, 10, 0, 0);
 
-				this.CreateEvent(ProviderName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
+				this.CreateEvent(providerName, title, content, startDate, endDate, street, city, state, country, contactEmail, contactName, contactWeb);
 			}
 		}
 
-		public void CreateEvent(string ProviderName, string title, string content, DateTime startDate, DateTime endDate, string street, string city, string state, string country, string contatcEmail, string contactWeb, string contactName)
+		public void CreateEvent(string providerName, string title, string content, DateTime startDate, DateTime endDate, string street, string city, string state, string country, string contatcEmail, string contactWeb, string contactName)
 		{
 			var eventId = Guid.Empty;
 
-			App.Prepare().SetContentProvider(ProviderName).WorkWith().Event().CreateNew()
+			App.Prepare().SetContentProvider(providerName).WorkWith().Event().CreateNew()
 				.Do(e =>
 				{
 					eventId = e.Id;
@@ -485,32 +474,26 @@ namespace SitefinityWebApp
 
 		protected void Session_Start(object sender, EventArgs e)
 		{
-
 		}
 
 		protected void Application_BeginRequest(object sender, EventArgs e)
 		{
-
 		}
 
 		protected void Application_AuthenticateRequest(object sender, EventArgs e)
 		{
-
 		}
 
 		protected void Application_Error(object sender, EventArgs e)
 		{
-
 		}
 
 		protected void Session_End(object sender, EventArgs e)
 		{
-
 		}
 
 		protected void Application_End(object sender, EventArgs e)
 		{
-
 		}
 
 		private void ConfigManager_Executed(object sender, Telerik.Sitefinity.Data.ExecutedEventArgs args)

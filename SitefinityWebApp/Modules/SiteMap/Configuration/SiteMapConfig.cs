@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
-using Telerik.Sitefinity.Configuration;
-using Telerik.Sitefinity.Modules.GenericContent.Configuration;
-using System.Configuration;
-using Telerik.Sitefinity.Modules.Pages.Configuration;
-using Telerik.Sitefinity.Localization;
-using Telerik.Sitefinity.Web.Configuration;
-using Telerik.Sitefinity.Modules.Pages;
-using Telerik.Sitefinity.Modules.Events;
 using Telerik.Sitefinity;
-using Telerik.Sitefinity.Modules.Events.Web.UI;
-using Telerik.Sitefinity.Modules.News;
-using Telerik.Sitefinity.Modules.News.Web.UI;
+using Telerik.Sitefinity.Configuration;
+using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Modules.Blogs;
 using Telerik.Sitefinity.Modules.Blogs.Web.UI;
+using Telerik.Sitefinity.Modules.Events;
+using Telerik.Sitefinity.Modules.Events.Web.UI;
+using Telerik.Sitefinity.Modules.GenericContent.Configuration;
+using Telerik.Sitefinity.Modules.News;
+using Telerik.Sitefinity.Modules.News.Web.UI;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Modules.Pages.Configuration;
 using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Web.Configuration;
 
 namespace SitefinityWebApp.Modules.SiteMap.Configuration
 {
@@ -46,8 +46,6 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
 
         private void CreateSampleWorker(object[] args)
         {
-            #region News
-
             // ensure news config exists
             if (!this.ContentTypes.ContainsKey(NewsModule.ModuleName))
             {
@@ -66,12 +64,12 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
                 foreach (var provider in providers)
                 {
                     // retrieve all pages with a NewsView on them
-                    var NewsPages = App.WorkWith().Pages()
+                    var newsPages = App.WorkWith().Pages()
                         .Where(p => p.Page != null && p.ShowInNavigation && p.Page.Controls.Where(c => c.ObjectType.StartsWith(typeof(NewsView).FullName)).Count() > 0)
                         .Get();
 
                     // attempt to locate the default page
-                    foreach (var page in NewsPages)
+                    foreach (var page in newsPages)
                     {
                         string providerName;
 
@@ -116,10 +114,6 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
                     }
                 }
             }
-
-            #endregion
-
-            #region Events
 
             // ensure events config exists
             if (!this.ContentTypes.ContainsKey(EventsModule.ModuleName))
@@ -190,10 +184,6 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
                 }
             }
 
-            #endregion
-
-            #region Blogs
-
             // ensure blog config exists
             if (!this.ContentTypes.ContainsKey(BlogsModule.ModuleName))
             {
@@ -234,8 +224,6 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
                     }
                 }
             }
-
-            #endregion
         }
         /// <summary>
         /// Called after the properties of this instance have been initialized.

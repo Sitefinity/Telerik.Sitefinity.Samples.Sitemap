@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Telerik.Sitefinity.Configuration;
-using System.Configuration;
 
 namespace SitefinityWebApp.Modules.SiteMap.Configuration
 {
@@ -16,7 +16,10 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
 		/// Initializes a new instance of the <see cref="ContentType"/> class.
 		/// </summary>
 		/// <param name="parent">The parent.</param>
-		public ContentType(ConfigElement parent) : base(parent) { this.Pages = new ConfigElementList<ContentPage>(this); }
+		public ContentType(ConfigElement parent) : base(parent) 
+        { 
+            this.Pages = new ConfigElementList<ContentPage>(this); 
+        }
 
 		/// <summary>
 		/// Gets or sets the name of the ContentType. This is the same as the Module Name of the Content Type.

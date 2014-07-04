@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Telerik.Sitefinity.Configuration;
-using System.Configuration;
 
 namespace SitefinityWebApp.Modules.SiteMap.Configuration
 {
@@ -16,18 +16,20 @@ namespace SitefinityWebApp.Modules.SiteMap.Configuration
 		/// Initializes a new instance of the <see cref="ContentPage"/> class.
 		/// </summary>
 		/// <param name="parent">The parent.</param>
-		public ContentPage(ConfigElement parent) : base(parent) { }
+		public ContentPage(ConfigElement parent) : base(parent) 
+        { 
+        }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ContentPage"/> class.
 		/// </summary>
 		/// <param name="parent">The parent config element.</param>
-		/// <param name="ProviderName">Name of the Sitefinity Content Type Provider.</param>
-		/// <param name="PageID">The Guid of the Sitefinity Page ID.</param>
-		public ContentPage(ConfigElement parent, string ProviderName, string PageID) : base(parent)
+		/// <param name="providerName">Name of the Sitefinity Content Type Provider.</param>
+		/// <param name="pageID">The Guid of the Sitefinity Page ID.</param>
+		public ContentPage(ConfigElement parent, string providerName, string pageID) : base(parent)
 		{
-			this.ProviderName = ProviderName;
-			this.DefaultPageUrl = PageID;
+			this.ProviderName = providerName;
+			this.DefaultPageUrl = pageID;
 		}
 
 		/// <summary>
