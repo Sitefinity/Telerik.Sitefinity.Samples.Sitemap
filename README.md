@@ -14,9 +14,7 @@ Using the Sitemap sample, you can:
 
 ### Requirements
 
-* Sitefinity 7.1 Beta license
- 
-  **NOTE**: For more information about acquiring a Sitefinity Beta license, contact [sales@sitefinity.com](sales@sitefinity.com)
+* Sitefinity 7.1 license
 
 * .NET Framework 4
 
