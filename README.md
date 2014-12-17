@@ -14,7 +14,7 @@ Using the Sitemap sample, you can:
 
 ### Requirements
 
-* Sitefinity 7.1 license
+* Sitefinity license
 
 * .NET Framework 4
 
