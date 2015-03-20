@@ -51,5 +51,6 @@ To login to Sitefinity backend, use the following credentials:
 
 ### Additional resources
 
-[Developers Guide](http://www.sitefinity.com/documentation/documentationarticles/developers-guide)
+Sitefinity documentation: [Development: Use and extend Sitefinity functionality](http://docs.sitefinity.com/develop-create-and-manage-website-content)
+
 
