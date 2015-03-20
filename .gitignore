@@ -1,0 +1,12 @@
+SitefinityWebApp/.nuget/NuGet.exe
+SitefinityWebApp/App_Data/Sitefinity/Logs/*
+SitefinityWebApp/App_Data/Sitefinity/Configuration/*
+!SitefinityWebApp/App_Data/Sitefinity/Configuration/StartupConfig.config
+SitefinityWebApp/bin/*
+SitefinityWebApp/obj/*
+SitefinityWebApp/packages/*
+SitefinityWebApp/ResourcePackages/*
+*.user
+*.suo
+*.Cache
+*.lic
