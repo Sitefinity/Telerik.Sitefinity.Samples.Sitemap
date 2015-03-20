@@ -23,6 +23,7 @@ using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web.UI.ContentUI.Contracts;
 using Telerik.Sitefinity.Web.UI.ContentUI.Views.Backend.Master.Definitions;
 using Telerik.Sitefinity.Web.UI.NavigationControls;
+using Telerik.Sitefinity.Events.Model;
 
 namespace SitefinityWebApp
 {
@@ -52,23 +53,21 @@ namespace SitefinityWebApp
 
 		protected void Application_Start(object sender, EventArgs e)
 		{
-			Bootstrapper.Initializing += new EventHandler<ExecutingEventArgs>(Bootstrapper_Initializing);
-            SystemManager.ApplicationStart += this.SystemManager_ApplicationStart;
+            Bootstrapper.Initialized += Bootstrapper_Initialized;
 		}
 
-        protected void SystemManager_ApplicationStart(object sender, EventArgs e)
+        void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
         {
-            SystemManager.RunWithElevatedPrivilegeDelegate worker = new SystemManager.RunWithElevatedPrivilegeDelegate(CreateSampleWorker);
-            SystemManager.RunWithElevatedPrivilege(worker);
+            if (e.CommandName == "RegisterRoutes")
+            {
+                SampleUtilities.RegisterModule<SiteMapModule>("SiteMap", "This sample presents showcases how to create a sitemap module which generates a search engine friendly sitemap.xml for your site.");
+            }
+            if ((Bootstrapper.IsDataInitialized) && (e.CommandName == "Bootstrapped"))
+            {
+                SystemManager.RunWithElevatedPrivilegeDelegate worker = new SystemManager.RunWithElevatedPrivilegeDelegate(CreateSampleWorker);
+                SystemManager.RunWithElevatedPrivilege(worker);
+            }
         }
-
-		protected void Bootstrapper_Initializing(object sender, Telerik.Sitefinity.Data.ExecutingEventArgs args)
-		{
-			if (args.CommandName == "RegisterRoutes")
-			{
-				SampleUtilities.RegisterModule<SiteMapModule>("SiteMap", "This sample presents showcases how to create a sitemap module which generates a search engine friendly sitemap.xml for your site.");
-			}
-		}
 
         private void CreateSampleWorker(object[] args)
         {            
@@ -102,6 +101,12 @@ namespace SitefinityWebApp
                 eventsConfig.Providers.Add(customProvider);
                 ConfigManager.GetManager().SaveSection(eventsConfig);
             }
+            //create the default calendar for the custom events provier
+            EventsManager eventsManager = EventsManager.GetManager(CustomEventsProviderName);
+            Calendar defaultCustomCalendar = eventsManager.CreateCalendar();
+            defaultCustomCalendar.Title = "Custom Calendar";
+            defaultCustomCalendar.UrlName = "custom-calendar";
+            eventsManager.SaveChanges();
 
             this.CreateNewsItems();
             this.CreateBlogPosts();
@@ -116,8 +121,6 @@ namespace SitefinityWebApp
             this.CreateEventsPage();
             this.CreateCustomEventsPage();
             this.CreateContactUsPage();
-
-            SampleUtilities.CreateUsersAndRoles();
         }		
 
 		private void CreateNewsItems()
@@ -275,28 +278,33 @@ namespace SitefinityWebApp
 
 		public void CreateEvent(string providerName, string title, string content, DateTime startDate, DateTime endDate, string street, string city, string state, string country, string contatcEmail, string contactWeb, string contactName)
 		{
-			var eventId = Guid.Empty;
+            var eventsFluentApi = App.Prepare().SetContentProvider(providerName).WorkWith().Event();
+            EventsManager eventsManager = eventsFluentApi.GetManager() as EventsManager;
 
-			App.Prepare().SetContentProvider(providerName).WorkWith().Event().CreateNew()
-				.Do(e =>
-				{
-					eventId = e.Id;
-					e.Title = title;
-					e.Content = content;
-					e.EventStart = startDate;
-					e.EventEnd = endDate;
-					e.Street = street;
-					e.City = city;
-					e.State = state;
-					e.Country = country;
-					e.ContactEmail = contatcEmail;
-					e.ContactName = contactName;
-					e.ContactWeb = contactWeb;
+            Calendar defaultCalendar = eventsManager.GetCalendars().FirstOrDefault();
+            if (defaultCalendar != null)
+            {
+                eventsFluentApi.CreateNew()
+                    .Do(e =>
+                    {
+                        e.Title = title;
+                        e.Content = content;
+                        e.EventStart = startDate;
+                        e.EventEnd = endDate;
+                        e.Street = street;
+                        e.City = city;
+                        e.State = state;
+                        e.Country = country;
+                        e.ContactEmail = contatcEmail;
+                        e.ContactName = contactName;
+                        e.ContactWeb = contactWeb;
 
-					e.PublicationDate = DateTime.Today;
-					e.ExpirationDate = DateTime.Today.AddDays(365);
-                    e.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
-				}).Publish().SaveChanges();
+                        e.PublicationDate = DateTime.Today;
+                        e.ExpirationDate = DateTime.Today.AddDays(365);
+                        e.ApprovalWorkflowState.Value = SampleUtilities.ApprovalWorkflowStatePublished;
+                        e.Parent = defaultCalendar;
+                    }).Publish().SaveChanges();
+            }
 		}
 
 		private void CreateHomePage()
