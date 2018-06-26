@@ -11,3 +11,4 @@ SitefinityWebApp/ResourcePackages/*
 *.Cache
 *.lic
 SitefinityWebApp/SitemapModuleSample.sln.GhostDoc.xml
+.vs/

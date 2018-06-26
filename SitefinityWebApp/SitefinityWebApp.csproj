@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SitefinityWebApp</RootNamespace>
     <AssemblyName>SitefinityWebApp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <SilverlightApplicationList>
     </SilverlightApplicationList>
     <FileUpgradeFlags>
@@ -28,7 +30,11 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <EnhancerAssembly>$(SolutionDir)\packages\Telerik.DataAccess.Fluent.2015.1.225.1\tools\enhancer\enhancer.exe</EnhancerAssembly>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <EnhancerAssembly>$(SolutionDir)\packages\Telerik.DataAccess.Fluent.2016.2.822.1\tools\enhancer\enhancer.exe</EnhancerAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +45,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +56,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\SitefinityWebApp.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release Pro|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
@@ -61,8 +69,11 @@
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="AzureWebRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -73,50 +84,132 @@
     <Compile Include="Modules\SiteMap\SiteMapModule.cs" />
     <Compile Include="Modules\SiteMap\SiteMapRouteHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AzureWebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminApp\app.e3fec2f3f3770e2e94ca.bundle.js" />
+    <Content Include="AdminApp\assets\auth\oidc-client.min.js" />
+    <Content Include="AdminApp\assets\auth\silent-renew.html" />
+    <Content Include="AdminApp\assets\auth\silent-renew.js" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-114x114.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-120x120.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-144x144.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-152x152.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-57x57.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-60x60.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-72x72.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-76x76.png" />
+    <Content Include="AdminApp\assets\icons\favicon-128x128.png" />
+    <Content Include="AdminApp\assets\icons\favicon-16x16.png" />
+    <Content Include="AdminApp\assets\icons\favicon-196x196.png" />
+    <Content Include="AdminApp\assets\icons\favicon-32x32.png" />
+    <Content Include="AdminApp\assets\icons\favicon-96x96.png" />
+    <Content Include="AdminApp\assets\icons\mstile-144x144.png" />
+    <Content Include="AdminApp\assets\icons\mstile-150x150.png" />
+    <Content Include="AdminApp\assets\icons\mstile-310x310.png" />
+    <Content Include="AdminApp\assets\icons\mstile-70x70.png" />
+    <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\base\worker\workerMain.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\bat.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\coffee.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\cpp.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\csharp.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\css.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\dockerfile.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\fsharp.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\go.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\handlebars.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\html.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\ini.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\java.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\less.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\lua.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\markdown.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\msdax.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\objective-c.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\php.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\postiats.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\powershell.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\pug.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\python.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\r.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\razor.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\ruby.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\scss.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\solidity.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\sql.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\swift.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\vb.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\xml.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\yaml.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\contrib\suggest\browser\media\String_16x.svg" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\contrib\suggest\browser\media\String_inverse_16x.svg" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.css" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.de.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.es.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.fr.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.hu.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.it.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.ja.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.ko.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.pt-br.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.ru.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.tr.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.zh-cn.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.zh-tw.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\standalone\browser\quickOpen\symbol-sprite.svg" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\css\cssMode.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\css\cssWorker.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\html\htmlMode.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\html\htmlWorker.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\json\jsonMode.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\json\jsonWorker.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\lib\typescriptServices.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\src\mode.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\src\worker.js" />
+    <Content Include="AdminApp\assets\js\monaco-editor\vs\loader.js" />
+    <Content Include="AdminApp\favicon.ico" />
+    <Content Include="AdminApp\index.html" />
+    <Content Include="AdminApp\vendors.67ed20d62ea6b5d72fee.bundle.js" />
+    <Content Include="App_Data\GeoLocation\citieslist.txt" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Themes\Samples\Global\main.css" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Themes\Samples\Images\logo.jpg" />
     <Content Include="ClientBin\Telerik.Sitefinity.Analytics.xap" />
     <Content Include="ClientBin\Telerik.Sitefinity.Silverlight.xap" />
     <Content Include="Default.aspx" />
+    <Content Include="extensions.bundle.js" />
     <Content Include="Global.asax" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\css\styles.css" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\css\styles.min.css" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share-sprite.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\blogger.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\delicious.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\digg.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\facebook.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\google.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\linkedin.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\mailto.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\myspace.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\reddit.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\stumble-upon.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\tumblr.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\social-share\twitter.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\js\all.min.js" />
-    <Content Include="ResourcePackages\Bootstrap\assets\dist\js\bootstrap.min.js" />
-    <Content Include="ResourcePackages\Bootstrap\assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share-icons.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share-sprite.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\blogger.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\delicious.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\digg.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\facebook.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\google.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\linkedin.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\mailto.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\myspace.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\reddit.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\stumble-upon.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\tumblr.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\images\social-share\twitter.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\js\bootstrap.js" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\js\magnific-init.js" />
-    <Content Include="ResourcePackages\Bootstrap\client-components\fields\html-field\sf-html-field.html" />
+    <Content Include="Mvc\Controllers\readme.txt" />
+    <Content Include="Mvc\Models\readme.txt" />
+    <Content Include="Mvc\Views\readme.txt" />
+    <Content Include="Mvc\Views\Shared\readme.txt" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\sprite.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\file.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\no-image.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\blogger.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\comment.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\delicious.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\digg.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\email.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\facebook.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\feed.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\google.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\linkedin.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\mailto.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\myspace.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\reddit.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\remove.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\stumble-upon.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\tumblr.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\twitter.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\feather-icons.css" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\sf-icon-font.html" />
     <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\container.html" />
     <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-12.html" />
     <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-2+3+2+3+2.html" />
@@ -129,163 +222,7 @@
     <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-8+4.html" />
     <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-9+3.html" />
     <Content Include="ResourcePackages\Bootstrap\gruntfile.js" />
-    <Content Include="ResourcePackages\Bootstrap\MVC\Scripts\SearchBox\Search-box.js" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\css\styles.css" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\css\styles.min.css" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share-sprite.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\blogger.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\delicious.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\digg.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\facebook.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\google.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\linkedin.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\mailto.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\myspace.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\reddit.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\stumble-upon.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\tumblr.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\images\social-share\twitter.png" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\js\foundation.init.js" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\js\foundation.min.js" />
-    <Content Include="ResourcePackages\Foundation\assets\dist\js\foundation.topbar.min.js" />
-    <Content Include="ResourcePackages\Foundation\assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share-sprite.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\blogger.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\delicious.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\digg.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\facebook.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\google.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\linkedin.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\mailto.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\myspace.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\reddit.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\stumble-upon.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\tumblr.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\images\social-share\twitter.png" />
-    <Content Include="ResourcePackages\Foundation\assets\src\js\foundation.init.js" />
-    <Content Include="ResourcePackages\Foundation\client-components\fields\html-field\sf-html-field.html" />
-    <Content Include="ResourcePackages\Foundation\css\foundation-sitefinity.css" />
-    <Content Include="ResourcePackages\Foundation\css\foundation-sitefinity.min.css" />
-    <Content Include="ResourcePackages\Foundation\css\foundation.min.css" />
-    <Content Include="ResourcePackages\Foundation\css\normalize.min.css" />
-    <Content Include="ResourcePackages\Foundation\css\sitefinity-backend.css" />
-    <Content Include="ResourcePackages\Foundation\css\sitefinity-backend.min.css" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-12.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-2+3+2+3+2.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-3+3+3+3.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-3+6+3.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-3+9.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-4+4+4.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-4+8.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-6+6.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-8+4.html" />
-    <Content Include="ResourcePackages\Foundation\GridSystem\Templates\grid-9+3.html" />
-    <Content Include="ResourcePackages\Foundation\gruntfile.js" />
-    <Content Include="ResourcePackages\Foundation\img\social-share-icons.png" />
-    <Content Include="ResourcePackages\Foundation\js\foundation.init.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation.min.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.abide.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.accordion.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.alert.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.clearing.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.dropdown.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.equalizer.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.interchange.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.joyride.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.magellan.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.offcanvas.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.orbit.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.reveal.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.slider.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.tab.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.tooltip.js" />
-    <Content Include="ResourcePackages\Foundation\js\foundation\foundation.topbar.js" />
-    <Content Include="ResourcePackages\Foundation\js\vendor\fastclick.js" />
-    <Content Include="ResourcePackages\Foundation\js\vendor\jquery.cookie.js" />
-    <Content Include="ResourcePackages\Foundation\js\vendor\jquery.js" />
-    <Content Include="ResourcePackages\Foundation\js\vendor\modernizr.js" />
-    <Content Include="ResourcePackages\Foundation\js\vendor\placeholder.js" />
-    <Content Include="ResourcePackages\Foundation\MVC\Scripts\SearchBox\Search-box.js" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\styles.css" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\styles.min.css" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\basic.icons.svg" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\icons.svg" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share-sprite.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\blogger.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\delicious.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\digg.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\facebook.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\google.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\linkedin.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\mailto.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\myspace.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\reddit.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\stumble-upon.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\tumblr.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\images\social-share\twitter.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\js\semantic.min.js" />
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\basic.icons.svg" />
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\icons.svg" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share-sprite.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\blogger.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\delicious.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\digg.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\facebook.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\google.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\linkedin.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\mailto.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\myspace.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\reddit.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\stumble-upon.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\tumblr.png" />
-    <Content Include="ResourcePackages\SemanticUI\assets\src\images\social-share\twitter.png" />
-    <Content Include="ResourcePackages\SemanticUI\client-components\fields\html-field\sf-html-field.html" />
-    <Content Include="ResourcePackages\SemanticUI\css\semantic-sitefinity.css" />
-    <Content Include="ResourcePackages\SemanticUI\css\semantic-sitefinity.min.css" />
-    <Content Include="ResourcePackages\SemanticUI\css\semantic.min.css" />
-    <Content Include="ResourcePackages\SemanticUI\fonts\basic.icons.svg" />
-    <Content Include="ResourcePackages\SemanticUI\fonts\icons.svg" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-11+5.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-12+4.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-3+6+3.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-4+12.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-5+11.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-five-cols.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-four-cols.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-one-col.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-three-cols.html" />
-    <Content Include="ResourcePackages\SemanticUI\GridSystem\Templates\grid-two-cols.html" />
-    <Content Include="ResourcePackages\SemanticUI\gruntfile.js" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-large-inverted.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-large.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-medium-inverted.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-medium.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-mini-inverted.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-mini.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-small-inverted.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\loader-small.gif" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\blogger.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\delicious.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\digg.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\email.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\google-bookmarks.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\icon11.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\icon12.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\icon13.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\icon14.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\icon15.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\linkein.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\myspace.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\pinterest.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\reddit.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\stumble-upon.png" />
-    <Content Include="ResourcePackages\SemanticUI\images\social-icons\tumblr.png" />
-    <Content Include="ResourcePackages\SemanticUI\javascript\jquery.min.js" />
-    <Content Include="ResourcePackages\SemanticUI\javascript\semantic.js" />
-    <Content Include="ResourcePackages\SemanticUI\javascript\semantic.min.js" />
-    <Content Include="ResourcePackages\SemanticUI\MVC\Scripts\SearchBox\Search-box.js" />
-    <Content Include="Silverlight.js" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Scripts\Navigation\pills.js" />
     <Content Include="Sitefinity\Default.aspx" />
     <Content Include="Sitefinity\Public\Services\Ecommerce\Order\CartOrder.svc" />
     <Content Include="Sitefinity\Public\Services\LoadBalancing\AzureSystemWebService.svc" />
@@ -297,30 +234,6 @@
     <Content Include="Sitefinity\Services\BlobStorage\BlobStorage.svc" />
     <Content Include="Sitefinity\Services\Catalog\ProductAttribute.svc" />
     <Content Include="Sitefinity\Services\Catalog\ProductAttributeValue.svc" />
-    <Content Include="Sitefinity\Services\Content\UserFileLibraryService.svc" />
-    <Content Include="Sitefinity\Services\Content\UserFileService.svc" />
-    <Content Include="Sitefinity\Services\DynamicModules\BackendFormService.svc" />
-    <Content Include="Sitefinity\Services\DynamicModules\BackendGridStructureService.svc" />
-    <Content Include="Sitefinity\Services\DynamicModules\ContentTypeService.svc" />
-    <Content Include="Sitefinity\Services\DynamicModules\Data.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductAttribute.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductAttributeValue.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductService.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductTypeService.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductVariation.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductVariationDetail.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductVariationsModuleService.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\CartDiscount.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\CartOrder.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\Cart.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\CartDetail.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\CartAddress.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\Discount.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\Order.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\Customer.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\OrderDiscount.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\OrderDownload.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\PaymentMethod.svc" />
     <Content Include="Sitefinity\Services\Common\Comments.svc" />
     <Content Include="Sitefinity\Services\Common\Content.svc" />
     <Content Include="Sitefinity\Services\Common\GenericItemsService.svc" />
@@ -334,28 +247,54 @@
     <Content Include="Sitefinity\Services\Content\BlogPostService.svc" />
     <Content Include="Sitefinity\Services\Content\BlogService.svc" />
     <Content Include="Sitefinity\Services\Content\CommentsGenericService.svc" />
+    <Content Include="Sitefinity\Services\Content\ContentBlockPage.svc" />
     <Content Include="Sitefinity\Services\Content\ContentItemService.svc" />
     <Content Include="Sitefinity\Services\Content\ContentService.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\Tax.svc" />
-    <Content Include="Sitefinity\Services\Content\ContentBlockPage.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\TaxClass.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Reports\OrdersReports.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Reports\ProductsReports.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Shipping\ShippingMethod.svc" />
-    <Content Include="Sitefinity\Services\Folders\FoldersService.svc" />
-    <Content Include="Sitefinity\Services\Lists\ListsModuleService.svc" />
-    <Content Include="Sitefinity\Services\Lists\ListItemService.svc" />
-    <Content Include="Sitefinity\Services\Lists\ListService.svc" />
     <Content Include="Sitefinity\Services\Content\DocumentLibraryService.svc" />
     <Content Include="Sitefinity\Services\Content\DocumentService.svc" />
     <Content Include="Sitefinity\Services\Content\EventService.svc" />
     <Content Include="Sitefinity\Services\Content\Generic.svc" />
     <Content Include="Sitefinity\Services\Content\ImageService.svc" />
     <Content Include="Sitefinity\Services\Content\NewsItemService.svc" />
+    <Content Include="Sitefinity\Services\Content\UserFileLibraryService.svc" />
+    <Content Include="Sitefinity\Services\Content\UserFileService.svc" />
     <Content Include="Sitefinity\Services\Content\VideoLibraryService.svc" />
     <Content Include="Sitefinity\Services\Content\VideoService.svc" />
     <Content Include="Sitefinity\Services\ControlTemplates\ControlTemplateService.svc" />
+    <Content Include="Sitefinity\Services\DynamicModules\BackendFormService.svc" />
+    <Content Include="Sitefinity\Services\DynamicModules\BackendGridStructureService.svc" />
+    <Content Include="Sitefinity\Services\DynamicModules\ContentTypeService.svc" />
+    <Content Include="Sitefinity\Services\DynamicModules\Data.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductAttribute.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductAttributeValue.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductService.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductTypeService.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductVariation.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductVariationDetail.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Catalog\ProductVariationsModuleService.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\CurrencyData.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\Cart.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\CartAddress.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\CartDetail.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\CartDiscount.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\CartOrder.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\Customer.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\CustomerAddress.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\Discount.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\Order.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\OrderDiscount.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\OrderDownload.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\PaymentMethod.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\Tax.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Order\TaxClass.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Reports\OrdersReports.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Reports\ProductsReports.svc" />
+    <Content Include="Sitefinity\Services\Ecommerce\Shipping\ShippingMethod.svc" />
+    <Content Include="Sitefinity\Services\Folders\FoldersService.svc" />
     <Content Include="Sitefinity\Services\Forms\FormsService.svc" />
+    <Content Include="Sitefinity\Services\Lists\ListItemService.svc" />
+    <Content Include="Sitefinity\Services\Lists\ListService.svc" />
+    <Content Include="Sitefinity\Services\Lists\ListsModuleService.svc" />
     <Content Include="Sitefinity\Services\LoadBalancing\AzureSystemWebService.svc" />
     <Content Include="Sitefinity\Services\LoadBalancing\SystemWebService.svc" />
     <Content Include="Sitefinity\Services\Localization\AllCulturesResource.svc" />
@@ -363,19 +302,20 @@
     <Content Include="Sitefinity\Services\Localization\LocalizationClasses.svc" />
     <Content Include="Sitefinity\Services\Localization\LocalizationResources.svc" />
     <Content Include="Sitefinity\Services\MetaData\MetaData.svc" />
-    <Content Include="Sitefinity\Services\Migration\Migration.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\Campaign.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\ABCampaign.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\SystemStats.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\Settings.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\DynamicList.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\MessageTemplate.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\MailingList.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\Subscriber.svc" />
     <Content Include="Sitefinity\Services\MetaData\ModuleEditor.svc" />
+    <Content Include="Sitefinity\Services\Migration\Migration.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\ABCampaign.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\Campaign.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\DynamicList.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\IssueReport.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\MailingList.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\MessageTemplate.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\Settings.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\Subscriber.svc" />
+    <Content Include="Sitefinity\Services\Newsletters\SystemStats.svc" />
     <Content Include="Sitefinity\Services\Pages\ControlPropertyService.svc" />
-    <Content Include="Sitefinity\Services\Pages\PageTemplatesService.svc" />
     <Content Include="Sitefinity\Services\Pages\PagesService.svc" />
+    <Content Include="Sitefinity\Services\Pages\PageTemplatesService.svc" />
     <Content Include="Sitefinity\Services\Pages\ZoneEditorService.svc" />
     <Content Include="Sitefinity\Services\Publishing\PublishingService.svc" />
     <Content Include="Sitefinity\Services\ResponsiveDesign\MediaQuery.svc" />
@@ -389,7 +329,6 @@
     <Content Include="Sitefinity\Services\Taxonomies\HierarchicalTaxon.svc" />
     <Content Include="Sitefinity\Services\Taxonomies\MarkedItems.svc" />
     <Content Include="Sitefinity\Services\Taxonomies\Taxonomy.svc" />
-    <Content Include="Sitefinity\Services\Thunder\ThunderService.svc" />
     <Content Include="Sitefinity\Services\Twitter\TwitterCredentialsService.svc" />
     <Content Include="Sitefinity\Services\Twitter\TwitterUrlShortConfigService.svc" />
     <Content Include="Sitefinity\Services\UserProfiles\UserProfileTypesService.svc" />
@@ -399,16 +338,6 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="wlwmanifest.xml" />
-    <Content Include="Sitefinity\Public\Services\Thunder\ThunderService.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\Order\CustomerAddress.svc" />
-    <Content Include="Sitefinity\Services\Ecommerce\CurrencyData.svc" />
-    <Content Include="Sitefinity\Services\Newsletters\IssueReport.svc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\RadSpell\de-DE.tdf" />
-    <Content Include="App_Data\RadSpell\en-US.tdf" />
-    <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Sitefinity\Configuration\DataConfig.config" />
@@ -417,119 +346,270 @@
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Master\Samples.master" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit">
+    <Reference Include="AjaxControlToolkit, Version=3.0.20820.16598, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>packages\AjaxControlToolkit.3.0.20820.0\lib\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="AntiXssLibrary">
+    <Reference Include="AmazingCloudSearch, Version=1.0.0.1, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.CloudSearch.1.0.0\lib\AmazingCloudSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
       <HintPath>packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="CsvHelper">
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK, Version=2.3.52.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <HintPath>packages\AWSSDK.2.3.52.0\lib\net45\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="DirectShowLib-2005">
+    <Reference Include="DDay.Collections, Version=1.0.2.25679, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.DDay.iCal.Signed.1.0.2.2\lib\DDay.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="DDay.iCal, Version=1.0.2.25718, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.DDay.iCal.Signed.1.0.2.2\lib\DDay.iCal.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectShowLib-2005, Version=2.1.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
       <HintPath>packages\DirectShowLib-2005.2.1.0.0\lib\DirectShowLib-2005.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="Elasticsearch.Net">
-      <HintPath>packages\Elasticsearch.Net.1.0.2\lib\Elasticsearch.Net.dll</HintPath>
+    <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>packages\Elasticsearch.Net.5.5.0\lib\net46\Elasticsearch.Net.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="Html2Amp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.HtmlToAmp.1.0.0.0\lib\net45\Html2Amp.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlSanitizationLibrary">
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
       <HintPath>packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToTwitter">
+    <Reference Include="HtmlSanitizer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=61c49a1a9e79cc28, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlSanitizer.3.4.156\lib\net45\HtmlSanitizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.IdentityModel.1.3.0\lib\net45\IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityServer3, Version=2.6.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.IdentityServer3.1.3.0\lib\net45\IdentityServer3.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.IdentityServer3.AccessTokenValidation.1.3.0\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToTwitter, Version=2.1.9.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <HintPath>packages\linqtotwitterNET40.2.1.9.0\lib\net40\LinqToTwitter.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Http">
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Analyzers, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Core, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.FastVectorHighlighter, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.FastVectorHighlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Highlighter, Version=2.3.2.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Highlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Memory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Queries, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Queries.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Regex, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Regex.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SimpleFacetedSearch, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.SimpleFacetedSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Snowball, Version=2.0.0.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Snowball.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Http, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Http.1.0.0.0\lib\Microsoft.Http.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.2.33, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.206221351\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>packages\CommonServiceLocator.Silverlight.1.0\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.OData.Core, Version=6.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.OData.Core.6.11.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm, Version=6.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.OData.Edm.6.11.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Cors.3.1.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.FileSystems, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.FileSystems.3.1.0\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Jwt.3.1.0\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.OpenIdConnect.3.1.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.WsFederation, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.WsFederation.3.0.1\lib\net45\Microsoft.Owin.Security.WsFederation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.StaticFiles, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.StaticFiles.3.1.0\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <Private>True</Private>
       <HintPath>packages\Microsoft.SharePoint.Client.15.0.4569.1000\lib\Microsoft.SharePoint.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <Private>True</Private>
       <HintPath>packages\Microsoft.SharePoint.Client.15.0.4569.1000\lib\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Spatial, Version=6.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Spatial.6.11.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
       <HintPath>packages\Microsoft.SqlServer.Types.10.50.1600.1\lib\Net20\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Threading.Tasks">
-      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions">
-      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
-      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Administration.7.0.0.0\lib\net20\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Diagnostics">
-      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.1\lib\net40\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.4\lib\net40\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Diagnostics.StorageUtility">
-      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.1\lib\net40\Microsoft.WindowsAzure.Diagnostics.StorageUtility.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.4\lib\net40\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime">
-      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.1\lib\net40\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=5.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAzure.Storage.5.0.2\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.StorageClient">
-      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.1\lib\net40\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.4\lib\net40\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
+    <Reference Include="MonAgentListener, Version=33.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Sitefinity.Windows.Azure.2.0.0.4\lib\net40\MonAgentListener.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.6.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.6.6.6\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nest">
-      <HintPath>packages\NEST.1.0.2\lib\Nest.dll</HintPath>
+    <Reference Include="Nest, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>packages\NEST.5.5.0\lib\net46\Nest.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.6.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="payflow_dotNET">
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.GitHub, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.Owin.Security.Providers.1.3.0\lib\net45\Owin.Security.Providers.GitHub.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.LinkedIn, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.Owin.Security.Providers.1.3.0\lib\net45\Owin.Security.Providers.LinkedIn.dll</HintPath>
+    </Reference>
+    <Reference Include="payflow_dotNET, Version=4.3.1.0, Culture=neutral, PublicKeyToken=14aa1e8d77f2a97c, processorArchitecture=MSIL">
       <HintPath>packages\payflow_dotNET.4.3.1.0\lib\payflow_dotNET.dll</HintPath>
     </Reference>
-    <Reference Include="RazorEngine">
+    <Reference Include="RazorEngine, Version=3.0.8.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>packages\Sitefinity.RazorEngine.3.0.8.0\lib\net40\RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="RazorGenerator.Templating">
+    <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>packages\RazorGenerator.Mvc.2.3.12\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Templating, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>packages\RazorGenerator.Templating.2.1.1\lib\net40\RazorGenerator.Templating.dll</HintPath>
     </Reference>
-    <Reference Include="RedDog.Search">
-      <HintPath>packages\Sitefinity.RedDog.Search.0.5.1.6\lib\net40\RedDog.Search.dll</HintPath>
+    <Reference Include="RedDog.Search, Version=0.5.3.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Sitefinity.RedDog.Search.0.5.3.0\lib\net40\RedDog.Search.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack">
-      <HintPath>packages\ServiceStack.Signed.4.0.36\lib\net40\ServiceStack.dll</HintPath>
+    <Reference Include="ServiceStack, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.5.0.2\lib\net45\ServiceStack.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Client">
-      <HintPath>packages\ServiceStack.Client.Signed.4.0.36\lib\net40\ServiceStack.Client.dll</HintPath>
+    <Reference Include="ServiceStack.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.Client.5.0.2\lib\net45\ServiceStack.Client.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Common">
-      <HintPath>packages\ServiceStack.Common.Signed.4.0.36\lib\net40\ServiceStack.Common.dll</HintPath>
+    <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.Common.5.0.2\lib\net45\ServiceStack.Common.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>packages\ServiceStack.Interfaces.4.0.36\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.Interfaces.5.0.2\lib\net45\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>packages\ServiceStack.Text.Signed.4.0.36\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Redis, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.Redis.5.0.2\lib\net45\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.Text.5.0.2\lib\net45\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -537,363 +617,404 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO">
-      <HintPath>packages\Microsoft.Bcl.1.1.8\lib\net40\System.IO.dll</HintPath>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>packages\Microsoft.Bcl.1.1.8\lib\net40\System.Runtime.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>packages\Microsoft.Bcl.1.1.8\lib\net40\System.Threading.Tasks.dll</HintPath>
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Extensions.Design" />
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.SelfHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebApi.SelfHost.4.0.30506.0\lib\net40\System.Web.Http.SelfHost.dll</HintPath>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Http.Tracing, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Web.Services.11.0.6700\lib\net471\System.Web.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows">
+    <Reference Include="System.Windows, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL">
       <HintPath>packages\System.Windows.5.0.61118.0\lib\System.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Xaml" />
-    <Reference Include="Telerik.DigitalExperienceCloud.Client">
-      <HintPath>packages\Telerik.Sitefinity.DigitalExperienceCloudConnector.8.0.5700.0\lib\net40\Telerik.DigitalExperienceCloud.Client.dll</HintPath>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.DEC.Common.Encryption.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca7c0b9c77ee15aa, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.DEC.Common.Encryption.Contract.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Everlive.Client">
-      <HintPath>packages\Telerik.Sitefinity.Everlive.8.0.5700.0\lib\net40\Telerik.Everlive.Client.dll</HintPath>
+    <Reference Include="Telerik.DigitalExperienceCloud.Client, Version=2.1.4.12864, Culture=neutral, PublicKeyToken=241a23cf8b6c74c1, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.DigitalExperienceCloudConnector.11.0.6700\lib\net471\Telerik.DigitalExperienceCloud.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Everlive.Sdk">
-      <HintPath>packages\Telerik.Sitefinity.Everlive.8.0.5700.0\lib\net40\Telerik.Everlive.Sdk.dll</HintPath>
+    <Reference Include="Telerik.Octopus.Validation, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.Octopus.Validation.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Octopus.Validation">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.Octopus.Validation.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess, Version=2016.2.822.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.DataAccess.Core.2016.2.822.1\lib\net40\Telerik.OpenAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess">
-      <HintPath>packages\Telerik.DataAccess.Core.2015.1.225.1\lib\net40\Telerik.OpenAccess.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2016.2.822.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.DataAccess.Core.2016.2.822.1\lib\net40\Telerik.OpenAccess.35.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.35.Extensions">
-      <HintPath>packages\Telerik.DataAccess.Core.2015.1.225.1\lib\net40\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.40.Extensions, Version=2016.2.822.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.DataAccess.Core.2016.2.822.1\lib\net40\Telerik.OpenAccess.40.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.40.Extensions">
-      <HintPath>packages\Telerik.DataAccess.Core.2015.1.225.1\lib\net40\Telerik.OpenAccess.40.Extensions.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataAdapter, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataAdapter">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataAdapter.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataAdapter.Everlive, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataAdapter.Everlive.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataAdapter.Everlive">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataAdapter.Everlive.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataAdapter.OpenAccess, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataAdapter.OpenAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataAdapter.OpenAccess">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataAdapter.OpenAccess.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataAdapter.SalesForce, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataAdapter.SalesForce.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataAdapter.SalesForce">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataAdapter.SalesForce.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataAdapter.SharePoint, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataAdapter.SharePoint.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataAdapter.SharePoint">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataAdapter.SharePoint.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataSource.SharePoint, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataSource.SharePoint.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataSource.SharePoint">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataSource.SharePoint.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.DataSource.SyncDB, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.OpenAccess.DataSource.SyncDB.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.DataSource.SyncDB">
-      <HintPath>packages\Telerik.Sitefinity.Octopus.2015.1.225.1\lib\net40\Telerik.OpenAccess.DataSource.SyncDB.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.Runtime, Version=2016.2.822.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.DataAccess.Core.2016.2.822.1\lib\net40\Telerik.OpenAccess.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Runtime">
-      <HintPath>packages\Telerik.DataAccess.Core.2015.1.225.1\lib\net40\Telerik.OpenAccess.Runtime.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.Sync, Version=2016.2.824.3, Culture=neutral, PublicKeyToken=563ab8ea49361608, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.OpenAccess.11.0.6700\lib\net471\Telerik.OpenAccess.Sync.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Sync">
-      <HintPath>packages\Telerik.Sitefinity.OpenAccess.8.0.5700.0\lib\net40\Telerik.OpenAccess.Sync.dll</HintPath>
+    <Reference Include="Telerik.OpenAccess.Web, Version=2016.2.822.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.OpenAccess.11.0.6700\lib\net471\Telerik.OpenAccess.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Web">
-      <HintPath>packages\Telerik.Sitefinity.OpenAccess.8.0.5700.0\lib\net40\Telerik.OpenAccess.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting">
+    <Reference Include="Telerik.Reporting, Version=7.1.13.612, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <HintPath>packages\Telerik.Sitefinity.Reporting.Controls.7.1.13.612\lib\net40\Telerik.Reporting.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Reporting.OpenXmlRendering">
+    <Reference Include="Telerik.Reporting.OpenXmlRendering, Version=7.1.13.612, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <HintPath>packages\Telerik.Sitefinity.Reporting.Controls.7.1.13.612\lib\net40\Telerik.Reporting.OpenXmlRendering.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Reporting.XpsRendering">
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=7.1.13.612, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <HintPath>packages\Telerik.Sitefinity.Reporting.Controls.7.1.13.612\lib\net40\Telerik.Reporting.XpsRendering.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.ReportViewer.WebForms">
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=7.1.13.612, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <HintPath>packages\Telerik.Sitefinity.Reporting.Controls.7.1.13.612\lib\net40\Telerik.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity">
-      <HintPath>packages\Telerik.Sitefinity.Core.8.0.5700.0\lib\net40\Telerik.Sitefinity.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Core.11.0.6700\lib\net471\Telerik.Sitefinity.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Analytics.Server.Infrastructure">
-      <HintPath>packages\Telerik.Sitefinity.Analytics.8.0.5700.0\lib\net40\Telerik.Sitefinity.Analytics.Server.Infrastructure.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.ABTesting, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.ABTesting.11.0.6700\lib\net471\Telerik.Sitefinity.ABTesting.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Audit.Elasticsearch">
-      <HintPath>packages\Telerik.Sitefinity.Audit.Elasticsearch.8.0.5700.0\lib\net40\Telerik.Sitefinity.Audit.Elasticsearch.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.AdminBridge, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.AdminBridge.11.0.6700\lib\net471\Telerik.Sitefinity.AdminBridge.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.AuditTrail">
-      <HintPath>packages\Telerik.Sitefinity.AuditTrail.8.0.5700.0\lib\net40\Telerik.Sitefinity.AuditTrail.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Amazon, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Amazon.11.0.6700\lib\net471\Telerik.Sitefinity.Amazon.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Connectivity">
-      <HintPath>packages\Telerik.Sitefinity.Connectivity.8.0.5700.0\lib\net40\Telerik.Sitefinity.Connectivity.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.AmazonCloudSearch, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.AmazonCloudSearch.11.0.6700\lib\net471\Telerik.Sitefinity.AmazonCloudSearch.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.ContentModules">
-      <HintPath>packages\Telerik.Sitefinity.Content.8.0.5700.0\lib\net40\Telerik.Sitefinity.ContentModules.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Analytics.Server.Infrastructure, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Analytics.11.0.6700\lib\net471\Telerik.Sitefinity.Analytics.Server.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.DAM">
-      <HintPath>packages\Telerik.Sitefinity.DAM.8.0.5700.0\lib\net40\Telerik.Sitefinity.DAM.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Audit.Elasticsearch, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Audit.Elasticsearch.11.0.6700\lib\net471\Telerik.Sitefinity.Audit.Elasticsearch.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Dashboard">
-      <HintPath>packages\Telerik.Sitefinity.Dashboard.8.0.5700.0\lib\net40\Telerik.Sitefinity.Dashboard.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.AuditTrail, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.AuditTrail.11.0.6700\lib\net471\Telerik.Sitefinity.AuditTrail.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.DataIntelligenceConnector">
-      <HintPath>packages\Telerik.Sitefinity.DigitalExperienceCloudConnector.8.0.5700.0\lib\net40\Telerik.Sitefinity.DataIntelligenceConnector.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Authentication, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.Authentication.11.0.6700\lib\net471\Telerik.Sitefinity.Authentication.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Diagnostics">
-      <HintPath>packages\Telerik.Sitefinity.Diagnostics.8.0.5700.0\lib\net40\Telerik.Sitefinity.Diagnostics.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Azure, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Azure.11.0.6700\lib\net471\Telerik.Sitefinity.Azure.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.DropboxLibraries">
-      <HintPath>packages\Telerik.Sitefinity.DropboxLibraries.8.0.5700.0\lib\net40\Telerik.Sitefinity.DropboxLibraries.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Connectivity, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Connectivity.11.0.6700\lib\net471\Telerik.Sitefinity.Connectivity.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Ecommerce">
-      <HintPath>packages\Telerik.Sitefinity.Content.8.0.5700.0\lib\net40\Telerik.Sitefinity.Ecommerce.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.ContentModules, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Content.11.0.6700\lib\net471\Telerik.Sitefinity.ContentModules.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.EverliveConnector">
-      <HintPath>packages\Telerik.Sitefinity.EverliveConnector.8.0.5700.0\lib\net40\Telerik.Sitefinity.EverliveConnector.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Dashboard, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Dashboard.11.0.6700\lib\net471\Telerik.Sitefinity.Dashboard.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Forums">
-      <HintPath>packages\Telerik.Sitefinity.Content.8.0.5700.0\lib\net40\Telerik.Sitefinity.Forums.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.DataIntelligenceConnector, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.DigitalExperienceCloudConnector.11.0.6700\lib\net471\Telerik.Sitefinity.DataIntelligenceConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend">
-      <HintPath>packages\Telerik.Sitefinity.Feather.Core.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Diagnostics, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Diagnostics.11.0.6700\lib\net471\Telerik.Sitefinity.Diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.ContentBlock">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.ContentBlock.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Ecommerce, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Content.11.0.6700\lib\net471\Telerik.Sitefinity.Ecommerce.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.DynamicContent">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.DynamicContent.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.EloquaConnector, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.EloquaConnector.11.0.6700\lib\net471\Telerik.Sitefinity.EloquaConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.Identity">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.Identity.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Forums, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Content.11.0.6700\lib\net471\Telerik.Sitefinity.Forums.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.Media">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.Media.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.Core.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.Navigation">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.Navigation.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Blogs, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Blogs.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.News">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.News.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Card, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Card.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.Search">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.Search.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Comments, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Comments.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Frontend.SocialShare">
-      <HintPath>packages\Telerik.Sitefinity.Feather.1.2.120.0\lib\net40\Telerik.Sitefinity.Frontend.SocialShare.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.ContentBlock, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.ContentBlock.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.MarketoConnector">
-      <HintPath>packages\Telerik.Sitefinity.MarketoConnector.8.0.5700.0\lib\net40\Telerik.Sitefinity.MarketoConnector.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Data, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.Core.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Migration">
-      <HintPath>packages\Telerik.Sitefinity.Migration.8.0.5700.0\lib\net40\Telerik.Sitefinity.Migration.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.DynamicContent, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.DynamicContent.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.MigrationContracts">
-      <HintPath>packages\Telerik.Sitefinity.Migration.8.0.5700.0\lib\net40\Telerik.Sitefinity.MigrationContracts.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.EmailCampaigns, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.EmailCampaigns.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.MobileAppBuilder">
-      <HintPath>packages\Telerik.Sitefinity.MobileAppBuilder.8.0.5700.0\lib\net40\Telerik.Sitefinity.MobileAppBuilder.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Events, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Model">
-      <HintPath>packages\Telerik.Sitefinity.Core.8.0.5700.0\lib\net40\Telerik.Sitefinity.Model.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Forms, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Personalization">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Personalization.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Identity, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Identity.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Personalization.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Personalization.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.InlineClientAssets, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.InlineClientAssets.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.PrecompiledPages.Backend.0">
-      <HintPath>packages\Telerik.Sitefinity.PrecompiledPages.Backend.8.0.5700.0\lib\net40\Telerik.Sitefinity.PrecompiledPages.Backend.0.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Lists, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Lists.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.PrecompiledTemplates">
-      <HintPath>packages\Telerik.Sitefinity.PrecompiledTemplates.8.0.5700.0\lib\net40\Telerik.Sitefinity.PrecompiledTemplates.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Media, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Media.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.RecurrentRules">
-      <HintPath>packages\Telerik.Sitefinity.Content.8.0.5700.0\lib\net40\Telerik.Sitefinity.RecurrentRules.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Navigation, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Navigation.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.RecycleBin">
-      <HintPath>packages\Telerik.Sitefinity.RecycleBin.8.0.5700.0\lib\net40\Telerik.Sitefinity.RecycleBin.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.News, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.News.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Resources">
-      <HintPath>packages\Telerik.Sitefinity.Core.8.0.5700.0\lib\net40\Telerik.Sitefinity.Resources.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Publishing, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Publishing.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.SalesForceConnector">
-      <HintPath>packages\Telerik.Sitefinity.SalesForceConnector.8.0.5700.0\lib\net40\Telerik.Sitefinity.SalesForceConnector.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Search, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Search.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Search">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Search.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.SocialShare, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.SocialShare.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Search.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Search.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Frontend.Taxonomies, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Feather.11.0.6700\lib\net471\Telerik.Sitefinity.Frontend.Taxonomies.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Comments">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Comments.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.MarketoConnector, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.MarketoConnector.11.0.6700\lib\net471\Telerik.Sitefinity.MarketoConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Comments.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Comments.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.MobileFormats, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.MobileFormats.11.0.6700\lib\net471\Telerik.Sitefinity.MobileFormats.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Documents">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Documents.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Model, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Core.11.0.6700\lib\net471\Telerik.Sitefinity.Model.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Documents.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Documents.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Mvc, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Mvc.11.0.6700\lib\net471\Telerik.Sitefinity.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Events">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Events.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Packaging, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Packaging.11.0.6700\lib\net471\Telerik.Sitefinity.Packaging.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Notifications">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Notifications.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Personalization, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Personalization.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Notifications.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Notifications.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Personalization.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Personalization.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.RecycleBin">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.RecycleBin.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.PrecompiledPages.Backend.0, Version=11.0.6700.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.PrecompiledPages.Backend.11.0.6700\lib\net471\Telerik.Sitefinity.PrecompiledPages.Backend.0.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.RecycleBin.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.RecycleBin.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.PrecompiledTemplates, Version=11.0.6700.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.PrecompiledTemplates.11.0.6700\lib\net471\Telerik.Sitefinity.PrecompiledTemplates.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Statistics">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Statistics.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.RecurrentRules, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Content.11.0.6700\lib\net471\Telerik.Sitefinity.RecurrentRules.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Services.Statistics.Impl">
-      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.8.0.5700.0\lib\net40\Telerik.Sitefinity.Services.Statistics.Impl.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.RecycleBin, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.RecycleBin.11.0.6700\lib\net471\Telerik.Sitefinity.RecycleBin.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.SharepointConnector">
-      <HintPath>packages\Telerik.Sitefinity.SharepointConnector.8.0.5700.0\lib\net40\Telerik.Sitefinity.SharepointConnector.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Resources, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Telerik.Sitefinity.Core.11.0.6700\lib\net471\Telerik.Sitefinity.Resources.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.SitemapGenerator">
-      <HintPath>packages\Telerik.Sitefinity.SitemapGenerator.8.0.5700.0\lib\net40\Telerik.Sitefinity.SitemapGenerator.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.SalesForceConnector, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.SalesForceConnector.11.0.6700\lib\net471\Telerik.Sitefinity.SalesForceConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.SiteSync">
-      <HintPath>packages\Telerik.Sitefinity.SiteSync.8.0.5700.0\lib\net40\Telerik.Sitefinity.SiteSync.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Search, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Search.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Thunder.CodeSync">
-      <HintPath>packages\Telerik.Sitefinity.Thunder.8.0.5700.0\lib\net40\Telerik.Sitefinity.Thunder.CodeSync.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Search.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Search.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Thunder.Contracts">
-      <HintPath>packages\Telerik.Sitefinity.Thunder.8.0.5700.0\lib\net40\Telerik.Sitefinity.Thunder.Contracts.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Comments, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Comments.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Thunder.Module">
-      <HintPath>packages\Telerik.Sitefinity.Thunder.8.0.5700.0\lib\net40\Telerik.Sitefinity.Thunder.Module.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Comments.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Comments.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Thunder.Zip">
-      <HintPath>packages\Telerik.Sitefinity.Thunder.8.0.5700.0\lib\net40\Telerik.Sitefinity.Thunder.Zip.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Documents, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Documents.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.UI.MVC">
-      <HintPath>packages\Telerik.Sitefinity.Mvc.8.0.5700.0\lib\net40\Telerik.Sitefinity.UI.MVC.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Documents.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Documents.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Sitefinity.Utilities">
-      <HintPath>packages\Telerik.Sitefinity.Core.8.0.5700.0\lib\net40\Telerik.Sitefinity.Utilities.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Events, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Tfis.Client">
-      <HintPath>packages\Telerik.Sitefinity.TfisClient.8.0.5700.0\lib\net40\Telerik.Tfis.Client.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Notifications, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Notifications.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.Design">
-      <HintPath>packages\Telerik.Web.UI.2015.1.225.40\lib\net40\Telerik.Web.Design.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Notifications.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Notifications.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI">
-      <HintPath>packages\Telerik.Web.UI.2015.1.225.40\lib\net40\Telerik.Web.UI.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.RecycleBin, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.RecycleBin.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>packages\Telerik.Web.UI.2015.1.225.40\lib\net40\Telerik.Web.UI.Skins.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.RecycleBin.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.RecycleBin.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Controls.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Statistics, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Statistics.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Data">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Data.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Services.Statistics.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.ServicesImpl.11.0.6700\lib\net471\Telerik.Sitefinity.Services.Statistics.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.SharepointConnector, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.SharepointConnector.11.0.6700\lib\net471\Telerik.Sitefinity.SharepointConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.SitemapGenerator, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.SitemapGenerator.11.0.6700\lib\net471\Telerik.Sitefinity.SitemapGenerator.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.SiteSync, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.SiteSync.11.0.6700\lib\net471\Telerik.Sitefinity.SiteSync.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.FormatProviders.Html">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.FormatProviders.Html.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.SiteSync.Impl, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.SiteSync.11.0.6700\lib\net471\Telerik.Sitefinity.SiteSync.Impl.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.FormatProviders.OpenXml">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.FormatProviders.OpenXml.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Translations, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Translations.11.0.6700\lib\net471\Telerik.Sitefinity.Translations.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.FormatProviders.Pdf">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.FormatProviders.Pdf.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Utilities, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Core.11.0.6700\lib\net471\Telerik.Sitefinity.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.FormatProviders.Rtf">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Documents.FormatProviders.Rtf.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.Web.Api, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Sitefinity.Web.Services.11.0.6700\lib\net471\Telerik.Sitefinity.Web.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.RadUploadHandler">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.RadUploadHandler.dll</HintPath>
+    <Reference Include="Telerik.Sitefinity.WebSecurity, Version=11.0.6700.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>packages\Progress.Sitefinity.WebSecurity.11.0.6700\lib\net471\Telerik.Sitefinity.WebSecurity.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Zip">
-      <HintPath>packages\Telerik.Sitefinity.Windows.Controls.2013.1.415.40\lib\net40\Telerik.Windows.Zip.dll</HintPath>
+    <Reference Include="Telerik.Web.Design, Version=2018.1.117.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Web.UI.2018.1.117.40\lib\net40\Telerik.Web.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Twitterizer2">
+    <Reference Include="Telerik.Web.UI, Version=2018.1.117.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Web.UI.2018.1.117.40\lib\net40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2018.1.117.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Web.UI.2018.1.117.40\lib\net40\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Controls.2018.1.122.45\lib\net45\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Data.2018.1.122.45\lib\net45\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.2018.1.122.45\lib\net45\Telerik.Windows.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.1.112.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.Core.2018.1.122.45\lib\net45\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2018.1.112.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.Fixed.2018.1.122.45\lib\net45\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2018.1.112.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.Flow.2018.1.122.45\lib\net45\Telerik.Windows.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.FormatProviders.Html, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.FormatProviders.Html.2018.1.122.45\lib\net45\Telerik.Windows.Documents.FormatProviders.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.FormatProviders.OpenXml, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.FormatProviders.OpenXml.2018.1.122.45\lib\net45\Telerik.Windows.Documents.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.FormatProviders.Rtf, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Documents.FormatProviders.Rtf.2018.1.122.45\lib\net45\Telerik.Windows.Documents.FormatProviders.Rtf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2018.1.112.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>packages\Telerik.Windows.Zip.2018.1.122.45\lib\net45\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Twitterizer2, Version=2.4.1.27318, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
       <HintPath>packages\Telerik.Sitefinity.Twitterizer.2.4.1\lib\net40\Twitterizer2.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -902,546 +1023,169 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="Settings.StyleCop" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
+    <Content Include="OpenAccessNuGet.targets" />
+    <Content Include="App_Data\RadSpell\fr-FR.tdf" />
+    <Content Include="App_Data\RadSpell\en-US.tdf" />
+    <Content Include="App_Data\RadSpell\de-DE.tdf" />
+    <Content Include="App_Data\GeoLocation\GeoLiteCity.dat" />
+    <None Include="packages.config" />
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Settings.StyleCop" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\sass\semantic-sitefinity.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\sass\navigation\_vertical-menu.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\sass\navigation\_sitemap-menu.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\sass\navigation\_dropdown.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\sass\_settings.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\sass\_global.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\SocialShare\SocialShare.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\News\List.NewsList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\News\Detail.DetailPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Navigation\NavigationView.Tiered.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Navigation\Dropdown.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Layouts\default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ContentBlock\Default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\jshint.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\icons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\icons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\icons.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\icons.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\basic.icons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\basic.icons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\fonts\basic.icons.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\csslint.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\LICENSE.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\sitefinity-backend.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\news\_News.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\navigation\_top-bar.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\navigation\_tabs-nav.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\navigation\_sitemap.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\navigation\_side-nav.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\navigation\_dropdown.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\foundation-sitefinity.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\sass\_settings.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\SocialShare\SocialShare.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\News\List.NewsList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\News\Detail.DetailPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Navigation\Dropdown.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Layouts\default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ContentBlock\Default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\jshint.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\csslint.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\README.md" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\razorgenerator.directives" />
     <Content Include="ResourcePackages\Bootstrap\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SocialShare\SocialShare.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\News\List.NewsList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\News\Detail.DetailPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Pills.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\Dropdown.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Layouts\default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ContentBlock\Default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\jshint.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\csslint.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\styles.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\navigation\_stacked.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\navigation\_sitemap.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\navigation\_navbar.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\navigation\_dropdown.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\_settings.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\_variables.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\SearchResults\SearchResults.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\SearchBox\SearchBox.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\DesignerView.Simple.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ImageGallery\DesignerView.Simple.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\Image\Image.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\MVC\Views\ContentPager\Pager.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\styles.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\social-share-sprite.mustache" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\searchResults\_sf-search-results.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\searchBox\_sf-search-box.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\navigation\_vertical-menu.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\navigation\_sitemap-menu.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\gallery\_gallery.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\_sf-content-block.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\sitefinity\_loading.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\_sf-social-share-sprite.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\src\less\_sf-social-share.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\icons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\icons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\icons.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\icons.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\basic.icons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\basic.icons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\fonts\basic.icons.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\icons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\icons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\icons.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\icons.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\basic.icons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\basic.icons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\SemanticUI\assets\dist\css\themes\default\assets\fonts\basic.icons.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\SearchResults\SearchResults.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\SearchBox\SearchBox.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\DesignerView.Simple.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ImageGallery\DesignerView.Simple.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\Image\Image.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\MVC\Views\ContentPager\Pager.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\styles.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\social-share-sprite.mustache" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\searchResults\_sf-search-results.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\searchBox\_sf-search-box.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\news\_News.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\navigation\_tabs-nav.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\navigation\_sitemap.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\navigation\_side-nav.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\gallery\_gallery.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\_sf-content-block.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\sitefinity\_loading.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\_sf-social-share-sprite.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\sass\_sf-social-share.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\src\js\imported-js.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Foundation\assets\fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\List.VideoGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\Detail.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UsersList\List.UsersList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UsersList\Detail.UserDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UnsubscribeForm\UnsubscribeFormByLink.UnsubscribeMessage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UnsubscribeForm\UnsubscribeFormByEmailAddress.UnsubscribeForm.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\TextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\TextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SubscribeForm\SubscribeForm.SubscribeForm.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SubmitButton\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\StyleSheet\Index.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SocialShare\SocialShare.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\SearchResults\SearchResults.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\SearchBox\SearchBox.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Reviews\ReviewsCount.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Reviews\Reviews.Default.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\Registration\Registration.RegistrationForm.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\Profile\Read.ProfilePreview.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\Profile\Edit.ProfileEdit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ParagraphTextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ParagraphTextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\PageBreak\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\News\List.NewsList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\News\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Pills.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\Dropdown.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\NavigationField\Read.ProgressBar.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\NavigationField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\MultipleChoiceField\Write.Default_Inline.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\MultipleChoiceField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\MultipleChoiceField\Read.Default.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginStatus\LoginStatus.LoginName.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginStatus\LoginStatus.LoginButton.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginForm\LoginForm.LoginForm.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\DesignerView.Simple.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\DesignerView.Simple.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.PagesList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.ExpandedList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.ExpandableList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.AnchorList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Layouts\default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LanguageSelector\LanguageSelector.LanguageLinks.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\JavaScript\Index.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\Image\Image.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\HiddenField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\HiddenField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Form\Index.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Form\Form.SubmitResultView.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.CloudList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FileField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Feed\Feed.FeedLink.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Event\List.EventsList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Event\Detail.EventDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\EventScheduler\List.Calendar.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\EventScheduler\Detail.EventDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\EmbedCode\Index.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DropdownListField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DropdownListField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Document\DocumentLink.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DocumentsList\List.DocumentsTable.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DocumentsList\List.DocumentsList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ContentBlock\Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Comments\CommentsCount.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Comments\Comments.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\CheckboxesField\Write.Default_Inline.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\CheckboxesField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\CheckboxesField\Read.Default.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\ChangePassword\ChangePassword.ChangePassword.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Card\Card.Simple.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Card\Card.Hero.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Card\Card.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Captcha\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Breadcrumb\Breadcrumb.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Blog\List.BlogList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Blog\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\BlogPost\List.BlogPostList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\BlogPost\Detail.DetailPage.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\AccountActivation\AccountActivation.AccountActivation.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\social-share-sprite.mustache" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\searchResults\_sf-search-results.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\searchBox\_sf-search-box.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\profile\sf-profile.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\gallery\_gallery.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\_variables.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\_sf-content-block.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\sitefinity\_loading.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\_sf-social-share-sprite.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sass\_sf-social-share.sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourcePackages\Bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="OpenAccessNuGet.targets" />
+    <Content Include="ResourcePackages\Bootstrap\jsfiles.json" />
+    <Content Include="ResourcePackages\Bootstrap\csslint.json" />
+    <Content Include="ResourcePackages\Bootstrap\client-components\fields\html-field\sf-html-field.sf-cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\socialShare\_sf-sprite.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\socialShare\_sf-social-share.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\socialShare\sf-sprite.mustache" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\siteSelector\_sf-site-selector.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\searchResults\_sf-search-results.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\searchBox\_sf-search-box.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\profile\_sf-profile.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\navigation\_stacked.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\navigation\_sitemap.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\navigation\_navbar.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\media\_sf-media.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\login\_sf-login.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\list\_sf-list.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\languageSelector\_sf-language-selector.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\gallery\_gallery.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\formNavigation\sf-form-nav.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\fileField\sf-file-field.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\feed\_sf-feed.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\event\_sf-event.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\documentList\_sf-document-list.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\contentBlock\_sf-content-block.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\comments\_sf-ratings.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\comments\_sf-comments.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\code\_sf-code.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\utilities\_text.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\utilities\_spacing.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\tools\_mixins.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\tools\_bootstrap-mixins.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\sitefinity.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\settings\_variables.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\loading\_loading.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\_sf-icon-font.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\_icons.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\feather-icons.json" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\base\_pre.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\project\sass\main.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.woff" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.ttf" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.eot" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1478,16 +1222,17 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets" Condition="Exists('packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets'))" />
+    <Error Condition="!Exists('packages\StyleCop.MSBuild.4.7.49.1\build\StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\StyleCop.MSBuild.4.7.49.1\build\StyleCop.MSBuild.Targets'))" />
+    <Error Condition="!Exists('packages\Telerik.Sitefinity.Feather.11.0.6700\build\Telerik.Sitefinity.Feather.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Telerik.Sitefinity.Feather.11.0.6700\build\Telerik.Sitefinity.Feather.targets'))" />
   </Target>
-  <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
-  </Target>
+  <Import Project="packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets" Condition="Exists('packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" />
+  <Import Project="packages\StyleCop.MSBuild.4.7.49.1\build\StyleCop.MSBuild.Targets" Condition="Exists('packages\StyleCop.MSBuild.4.7.49.1\build\StyleCop.MSBuild.Targets')" />
+  <Import Project="packages\Telerik.Sitefinity.Feather.11.0.6700\build\Telerik.Sitefinity.Feather.targets" Condition="Exists('packages\Telerik.Sitefinity.Feather.11.0.6700\build\Telerik.Sitefinity.Feather.targets')" />
 </Project>

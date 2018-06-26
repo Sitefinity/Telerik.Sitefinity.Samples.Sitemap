@@ -1915,9 +1915,9 @@ namespace Telerik.Sitefinity.Samples.Common
 
             string username = SampleUtilities.DefaultUserName;
             string password = SampleUtilities.DefaultUserPassword;
-            string issuer = SitefinityClaimsAuthenticationModule.Current.GetIssuer();
+            string issuer = ClaimsManager.CurrentAuthenticationModule.GetIssuer();
             string currentRequestPath = HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath);
-            string realm = HttpUtility.UrlEncode(SitefinityClaimsAuthenticationModule.Current.GetRealm());
+            string realm = HttpUtility.UrlEncode(ClaimsManager.CurrentAuthenticationModule.GetRealm());
 
             var authenticateUrl = "{0}?deflate=true&redirect_uri={1}&wrap_name={2}&wrap_password={3}&realm={4}".Arrange(issuer,
                 currentRequestPath, username, password, realm);
