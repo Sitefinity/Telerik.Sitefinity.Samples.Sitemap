@@ -5,7 +5,8 @@ SitefinityWebApp/App_Data/Sitefinity/Configuration/*
 SitefinityWebApp/bin/*
 SitefinityWebApp/obj/*
 SitefinityWebApp/packages/*
-SitefinityWebApp/ResourcePackages/*
+SitefinityWebApp/ResourcePackages/Foundation/*
+SitefinityWebApp/ResourcePackages/SemanticUI/*
 *.user
 *.suo
 *.Cache
