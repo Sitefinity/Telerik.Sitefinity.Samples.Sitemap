@@ -86,97 +86,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminApp\app.e3fec2f3f3770e2e94ca.bundle.js" />
-    <Content Include="AdminApp\assets\auth\oidc-client.min.js" />
-    <Content Include="AdminApp\assets\auth\silent-renew.html" />
-    <Content Include="AdminApp\assets\auth\silent-renew.js" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-114x114.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-120x120.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-144x144.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-152x152.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-57x57.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-60x60.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-72x72.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-76x76.png" />
-    <Content Include="AdminApp\assets\icons\favicon-128x128.png" />
-    <Content Include="AdminApp\assets\icons\favicon-16x16.png" />
-    <Content Include="AdminApp\assets\icons\favicon-196x196.png" />
-    <Content Include="AdminApp\assets\icons\favicon-32x32.png" />
-    <Content Include="AdminApp\assets\icons\favicon-96x96.png" />
-    <Content Include="AdminApp\assets\icons\mstile-144x144.png" />
-    <Content Include="AdminApp\assets\icons\mstile-150x150.png" />
-    <Content Include="AdminApp\assets\icons\mstile-310x310.png" />
-    <Content Include="AdminApp\assets\icons\mstile-70x70.png" />
-    <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\base\worker\workerMain.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\bat.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\coffee.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\cpp.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\csharp.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\css.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\dockerfile.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\fsharp.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\go.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\handlebars.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\html.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\ini.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\java.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\less.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\lua.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\markdown.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\msdax.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\objective-c.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\php.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\postiats.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\powershell.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\pug.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\python.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\r.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\razor.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\ruby.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\scss.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\solidity.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\sql.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\swift.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\vb.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\xml.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\yaml.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\contrib\suggest\browser\media\String_16x.svg" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\contrib\suggest\browser\media\String_inverse_16x.svg" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.css" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.de.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.es.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.fr.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.hu.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.it.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.ja.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.ko.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.pt-br.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.ru.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.tr.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.zh-cn.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\editor.main.nls.zh-tw.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\editor\standalone\browser\quickOpen\symbol-sprite.svg" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\css\cssMode.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\css\cssWorker.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\html\htmlMode.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\html\htmlWorker.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\json\jsonMode.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\json\jsonWorker.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\lib\typescriptServices.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\src\mode.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\src\worker.js" />
-    <Content Include="AdminApp\assets\js\monaco-editor\vs\loader.js" />
-    <Content Include="AdminApp\favicon.ico" />
-    <Content Include="AdminApp\index.html" />
-    <Content Include="AdminApp\vendors.67ed20d62ea6b5d72fee.bundle.js" />
-    <Content Include="App_Data\GeoLocation\citieslist.txt" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Themes\Samples\Global\main.css" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Themes\Samples\Images\logo.jpg" />
-    <Content Include="ClientBin\Telerik.Sitefinity.Analytics.xap" />
-    <Content Include="ClientBin\Telerik.Sitefinity.Silverlight.xap" />
     <Content Include="Default.aspx" />
     <Content Include="extensions.bundle.js" />
     <Content Include="Global.asax" />
@@ -338,9 +249,6 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\Sitefinity\Configuration\DataConfig.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Master\Samples.master" />
@@ -1027,16 +935,17 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
+    <Content Include="App_Data\Sitefinity\Configuration\StartupConfig.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="OpenAccessNuGet.targets" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\de-DE.tdf" />
-    <Content Include="App_Data\GeoLocation\GeoLiteCity.dat" />
-    <None Include="packages.config" />
-    <Content Include="SampleTemplate.cshtml">
-      <Generator>RazorGenerator</Generator>
-    </Content>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SampleTemplate.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\README.md" />
     <Content Include="ResourcePackages\Bootstrap\razorgenerator.directives" />
     <Content Include="ResourcePackages\Bootstrap\package.json" />
