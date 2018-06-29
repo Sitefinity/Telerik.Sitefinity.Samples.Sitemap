@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Progress")]
 [assembly: AssemblyProduct("Progress Sitefinity CMS")]
-[assembly: AssemblyCopyright("© 2016 Telerik AD. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2005-2018 Telerik EAD. All rights reserved.")]
 [assembly: AssemblyTrademark("Sitefinity")]
 [assembly: AssemblyCulture("")]
 
@@ -36,3 +36,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("4.3.2074.0")]
 [assembly: AssemblyFileVersion("4.3.2074.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
+
+
+
+
+[assembly: Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes.ControllerContainer]
+
+[assembly: Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes.ResourcePackage]
