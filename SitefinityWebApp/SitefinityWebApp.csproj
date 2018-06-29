@@ -89,7 +89,6 @@
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Themes\Samples\Global\main.css" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\Samples\App_Themes\Samples\Images\logo.jpg" />
     <Content Include="Default.aspx" />
-    <Content Include="extensions.bundle.js" />
     <Content Include="Global.asax" />
     <Content Include="Mvc\Controllers\readme.txt" />
     <Content Include="Mvc\Models\readme.txt" />
